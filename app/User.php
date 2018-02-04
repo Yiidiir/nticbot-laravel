@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -34,10 +35,8 @@ class User extends Authenticatable
 
 
     /**
-
      * @param string|array $roles
      * @return mixed
-
      */
     public function authorizeRoles($roles)
 
@@ -81,5 +80,14 @@ class User extends Authenticatable
 
         return null !== $this->roles()->where('name', $role)->first();
 
+    }
+
+    /** Grab resources of this user
+     *
+     * @return an array of resources by this user
+     */
+    public function resources()
+    {
+        $this->hasMany(Resource::class);
     }
 }

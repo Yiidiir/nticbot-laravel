@@ -20,8 +20,8 @@ class UserTableSeeder extends Seeder
         $role_admin = Role::where('name', 'Admin')->first();
 
         $student = new User();
-        $student->name = 'Ahmed Younes';
-        $student->email = 'ahmed.younes@gmail.com';
+        $student->name = 'Yidir BOUHADJER';
+        $student->email = 'yidirbouhadjer@gmail.com';
         $student->password = bcrypt('secret');
         $student->save();
         $student->roles()->attach($role_student);
