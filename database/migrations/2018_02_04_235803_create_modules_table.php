@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateResourcesTable extends Migration
+class CreateModulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateResourcesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resources', function (Blueprint $table) {
+        Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
+            $table->string('code');
             $table->text('description');
-            $table->string('google_drive')->nullable();
-            $table->year('publish_year');
-            $table->integer('module_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->enum('degree', ['L', 'M', 'D']);
+            $table->tinyInteger('semester');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateResourcesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resources');
+        Schema::dropIfExists('modules');
     }
 }
