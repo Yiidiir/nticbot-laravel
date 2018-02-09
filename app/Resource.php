@@ -8,6 +8,9 @@ class Resource extends Model
 {
     //
 
+    protected $fillable = ['title','description','google_drive','publish_year'];
+
+
     /** Get the ressource poster
      *
      */
