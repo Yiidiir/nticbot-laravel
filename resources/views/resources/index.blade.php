@@ -1,7 +1,83 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Yidir
- * Date: 2/9/2018
- * Time: 11:52 PM
- */
+@extends('layouts.app')
+
+
+@section('content')
+
+    <div class="row col-md-6 col-md-offset-3">
+
+
+        <div class="row">
+            <div class="pull-left">
+
+                <h2>Resource Index</h2>
+
+            </div>
+
+            <div class="pull-right">
+
+                <a class="btn btn-success" href="{{ route('resources.create') }}"> Create New Resource</a>
+
+            </div>
+        </div>
+
+
+        @if ($message = Session::get('success'))
+
+            <div class="alert alert-success">
+
+                <p>{{ $message }}</p>
+
+            </div>
+
+        @endif
+
+        <div class="row">
+
+            <table class="table table-bordered">
+
+                <tr>
+
+                    <th>No</th>
+
+                    <th>Title</th>
+
+                    <th>Body</th>
+
+                    <th width="280px">Action</th>
+
+                </tr>
+
+                @foreach ($resources as $resource)
+
+                    <tr>
+
+                        <td>{{ ++$i }}</td>
+
+                        <td>{{ $resource->title}}</td>
+
+                        <td>{{ $resource->description}}</td>
+
+                        <td>
+
+                            <a class="btn btn-info" href="#">Show</a>
+
+                            <a class="btn btn-primary" href="{{ route('resources.edit',$resource->id) }}">Edit</a>
+
+                            {!! Form::open(['method' => 'DELETE','route' => ['resources.destroy', $resource->id],'style'=>'display:inline']) !!}
+
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+
+                            {!! Form::close() !!}
+
+                        </td>
+
+                    </tr>
+
+                @endforeach
+
+            </table>
+        </div>
+
+        {!! $resources->links() !!}
+    </div>
+@endsection
