@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Http\Resources\Json\Resource;
+use App\Resource as MyResource;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -88,6 +88,6 @@ class User extends Authenticatable
      */
     public function resources()
     {
-        $this->hasMany(Resource::class);
+        $this->hasMany(MyResource::class);
     }
 }

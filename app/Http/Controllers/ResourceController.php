@@ -1,9 +1,11 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
-use App\Resource;
 use Illuminate\Http\Request;
+use App\Resource as MyResource;
+use Illuminate\Http\Resources\Json\Resource;
 
 class ResourceController extends Controller
 {
@@ -24,6 +26,10 @@ class ResourceController extends Controller
     public function index()
     {
         //
+        $resources = MyResource::latest()->paginate(5);
+
+        return view('resources.index', compact('resources'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -46,53 +52,63 @@ class ResourceController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate(['title' => 'required|string', 'description' => 'string', 'google_drive' => 'string|size:255', 'publish_year' => 'required|digits:4']);
-        Resource::create($request->all());
-        return redirect()->route('resources.index')->with('success','Resource Added!');
+        /*exit(var_dump($request->all()));*/
+        $request->validate(['title' => 'required|string', 'description' => 'nullable|string', 'google_drive' => 'nullable|string|max:255', 'publish_year' => 'required|digits:4']);
+        MyResource::create($request->all());
+        return redirect()->route('resources.index')->with('success', 'Resource Added!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Resource $resource
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Resource $resource)
+    public function show($id)
     {
-        //
+        $resource = MyResource::find($id);
+        return view('resources.show', compact('resource'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Resource $resource
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resource $resource)
+    public function edit($id)
     {
-        //
+        $resource = MyResource::find($id);
+        return view('resources.edit', compact('resource'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\Resource $resource
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resource $resource)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate(['title' => 'required|string', 'description' => 'nullable|string', 'google_drive' => 'nullable|string|size:255', 'publish_year' => 'required|digits:4']);
+        MyResource::find($id)->update($request->all());
+
+        return redirect()->route('resources.index')
+            ->with('success', 'Resource updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Resource $resource
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resource $resource)
+    public function destroy($id)
     {
-        //
+        MyResource::find($id)->delete();
+
+        return redirect()->route('resources.index')
+            ->with('success', 'Resource deleted successfully');
     }
 }
