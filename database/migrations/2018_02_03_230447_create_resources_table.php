@@ -16,7 +16,7 @@ class CreateResourcesTable extends Migration
         Schema::create('resources', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->string('google_drive')->nullable();
             $table->year('publish_year');
             $table->integer('module_id')->unsigned()->nullable();
