@@ -33,7 +33,7 @@
 
         <div class="row">
 
-            <table class="table table-bordered">
+            <table class="table table-stripped">
 
                 <tr>
 
@@ -59,7 +59,7 @@
 
                         <td>
 
-                            <a class="btn btn-info" href="#">Show</a>
+                            <a class="btn btn-info" href="{{ route('resources.show',$resource->id) }}">Show</a>
 
                             <a class="btn btn-primary" href="{{ route('resources.edit',$resource->id) }}">Edit</a>
 
