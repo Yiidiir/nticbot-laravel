@@ -4,7 +4,9 @@
 @section('content')
 
 
-    <div class="row col-md-6 col-md-offset-3">
+
+
+    <div class="container col-md-6 col-md-offset-3">
 
         <div class="row">
             <div class="pull-left">
@@ -21,16 +23,18 @@
         </div>
 
 
-        {{--
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif--}}
+        {{--{{!! var_dump(array_column($modules['L'],'name')) !!}}--}}
+
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
 
         {!! Form::open(array('route' => 'resources.store','method'=>'POST')) !!}
