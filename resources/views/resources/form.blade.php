@@ -26,8 +26,8 @@
     </div>
     <div class="form-group">
 
-        {!! Form::label('module', 'Choose a Module') !!}
-        {!! Form::select('module',  $modules, null, ['class'=>'form-control']) !!}
+        {!! Form::label('module_id', 'Choose a Module') !!}
+        {!! Form::select('module_id',  $modules, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
         {{ Form::label('title', 'Google Drive link:') }}
@@ -39,12 +39,13 @@
         {{ Form::selectRange('publish_year', 2008, date('Y'),date('Y'),array('class'=>'form-control')) }}
     </div>
 
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
 
 </div>
 
-<div class="row">
 
-    <button type="submit" class="btn btn-primary">Submit</button>
 
-</div>
 

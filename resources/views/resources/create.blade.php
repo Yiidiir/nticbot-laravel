@@ -6,7 +6,7 @@
 
 
 
-    <div class="container col-md-6 col-md-offset-3">
+    <div class="container-fluid col-md-6 col-md-offset-3">
 
         <div class="row">
             <div class="pull-left">
@@ -37,11 +37,13 @@
         @endif
 
 
-        {!! Form::open(array('route' => 'resources.store','method'=>'POST')) !!}
+        <div class="row">
+            {!! Form::open(array('route' => 'resources.store','method'=>'POST')) !!}
 
-        @include('resources.form')
+            @include('resources.form')
 
-        {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
 
     </div>
 

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="pull-left">
 
-                <h2>Resource Index</h2>
+                <h2>Resource List</h2>
 
             </div>
 
@@ -37,7 +37,7 @@
 
                 <tr>
 
-                    <th>No</th>
+                    <th>#</th>
 
                     <th>Title</th>
 
@@ -51,7 +51,7 @@
 
                     <tr>
 
-                        <td>{{ ++$i }}</td>
+                        <td>{{$resource->id}}</td>
 
                         <td>{{ $resource->title}}</td>
 
