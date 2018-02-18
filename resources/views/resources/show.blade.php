@@ -25,7 +25,7 @@
         <div class="row">
 
 
-            <div class="form-group">
+            <div class="div-group">
 
                 <strong>Title:</strong>
 
@@ -34,7 +34,7 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="div-group">
 
                 <strong>Body:</strong>
 
@@ -42,12 +42,28 @@
 
             </div>
 
-            <div class="form-group">
+            <div class="div-group">
 
                 <strong>Year:</strong>
 
                 {{ $resource->publish_year}}
 
+            </div>
+
+
+            <div class="div-group">
+
+                <strong>Module:</strong>
+
+                {{ $resource->module->name}}
+
+            </div>
+
+
+            <div class="div-group">
+
+                <strong>Download :</strong>
+                {{ link_to($resource->google_drive, $title = 'Download Resource', $attributes = array(), $secure = null)}}
             </div>
 
 
