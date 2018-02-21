@@ -15,9 +15,9 @@ class isAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->hasRole('Admin')) {
+        if ($request->user()->authorizeRoles('Admin')) {
             return $next($request);
         }
-        return redirect('home');
+        return abort(401, 'Forbidden Access');
     }
 }
