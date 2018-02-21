@@ -92,7 +92,10 @@ class ResourceController extends Controller
     public function show($id)
     {
         $resource = MyResource::find($id);
-        return view('resources.show', compact('resource'));
+        if ($resource != null) {
+            return view('resources.show', compact('resource'));
+        }
+        return abort(404, 'Resource Not Found!');
     }
 
     /**
@@ -104,11 +107,11 @@ class ResourceController extends Controller
     public function edit($id, Request $request)
     {
         $resource = MyResource::find($id);
-        if ($request->user()->id == Auth::user()->id || Auth::user()->hasRole('Admin')) {
+        if ($request->user()->id == $resource->user->id || $request->user()->hasRole('Admin')) {
             $modules = Module::getFormModulesArray();
             return view('resources.edit', compact('resource', 'modules'));
         } else {
-            abort(403);
+            return abort(401, 'You\'re not allowed to edit this resource!');
         }
     }
 
@@ -129,23 +132,25 @@ class ResourceController extends Controller
 
             return redirect()->route('resources.index')
                 ->with('success', 'Resource updated successfully');
-        } else {
-            return exit('NOPE - NO ACCESS!');
-            //return abort(403);
         }
+        return abort(401, 'You\'re not allowed to edit this resource!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param \Illuminate\Http\Request $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        MyResource::find($id)->delete();
+        if (MyResource::find($id)->user->id == $request->user()->id || $request->user()->hasRole('Admin')) {
+            MyResource::find($id)->delete();
 
-        return redirect()->route('resources.index')
-            ->with('success', 'Resource deleted successfully');
+            return redirect()->route('resources.index')
+                ->with('success', 'Resource deleted successfully');
+        }
+        return abort('401', 'You\'re not allowed to delete this resource!');
     }
 }
