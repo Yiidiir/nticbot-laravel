@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Resource as MyResource;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Middleware;
 
 class ResourceController extends Controller
 {
@@ -28,7 +29,7 @@ class ResourceController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show']]);
+        $this->middleware(['auth', 'isTeacherORisAdmin'], ['except' => ['show']]);
     }
 
 
