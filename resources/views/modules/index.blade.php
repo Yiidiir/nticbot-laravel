@@ -41,6 +41,8 @@
 
                     <th>Title</th>
 
+                    <th>Degree</th>
+
                     <th>Body</th>
 
                     <th width="280px">Action</th>
@@ -54,6 +56,8 @@
                         <td>{{$module->id}}</td>
 
                         <td>{{ $module->name}}</td>
+
+                        <td>{{ $module->getDegree($module->degree)}}</td>
 
                         <td>{{ $module->description}}</td>
 
