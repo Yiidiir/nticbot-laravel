@@ -35,4 +35,11 @@ class Module extends Model
 
         return $m_form;
     }
+
+    public static function getDegree(String $char)
+    {
+        $degreez = ['L' => 'Licence', 'M' => 'Master', 'D' => 'Doctorat'];
+        return (array_key_exists($char, $degreez) ? ($degreez[$char]) : ($degreez['L']));
+
+    }
 }
