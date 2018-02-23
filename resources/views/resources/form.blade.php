@@ -30,7 +30,7 @@
         {!! Form::select('module_id',  $modules, null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {{ Form::label('title', 'Google Drive link:') }}
+        {{ Form::label('google_drive', 'Google Drive link:') }}
         {{ Form::text('google_drive', null, array('placeholder' => 'https://drive.google.com/file/d/0B8JXivo4iMxJVE5pd0s5aE04TjhTT2dWNEVvckhMdGRyT0Iw/view','class' => 'form-control')) }}
     </div>
 
