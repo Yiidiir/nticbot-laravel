@@ -74,9 +74,6 @@ class ResourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        /*exit(var_dump($request->all()));*/
-        //$request->module_id = (int)$request->module_id;
         $request->merge(['module_id' => (int)$request->get('module_id')]);
         $request->validate(['title' => 'required|string', 'description' => 'nullable|string', 'google_drive' => 'nullable|url|max:255', 'publish_year' => 'required|numeric|digits:4|between:2008,' . date('Y'), 'module_id' => 'required|integer|exists:modules,id']);//        exit(var_dump($request->get('module_id')));
         ;
