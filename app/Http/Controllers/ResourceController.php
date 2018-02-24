@@ -103,11 +103,13 @@ class ResourceController extends Controller
     public function edit($id, Request $request)
     {
         $resource = MyResource::find($id);
-        if ($request->user()->id == $resource->user->id || $request->user()->hasRole('Admin')) {
-            $modules = Module::getFormModulesArray();
-            return view('resources.edit', compact('resource', 'modules'));
-        } else {
-            return abort(401, 'You\'re not allowed to edit this resource!');
+        if ($resource != null) {
+            if ($request->user()->id == $resource->user->id || $request->user()->hasRole('Admin')) {
+                $modules = Module::getFormModulesArray();
+                return view('resources.edit', compact('resource', 'modules'));
+            } else {
+                return abort(401, 'You\'re not allowed to edit this resource!');
+            }
         }
     }
 
