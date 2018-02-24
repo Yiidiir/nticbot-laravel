@@ -75,7 +75,7 @@ class ResourceController extends Controller
     public function store(Request $request)
     {
         $request->validate(['title' => 'required|string', 'description' => 'nullable|string', 'google_drive' => 'nullable|url|max:255', 'publish_year' => 'required|numeric|digits:4|between:2008,' . date('Y'), 'module_id' => 'required|integer|exists:modules,id']);
-        MyResource::create($request->all());
+        MyResource::create($request->all())->user()->associate($request->user())->save();
         return redirect()->route('resources.index')->with('success', 'Resource Added!');
     }
 
