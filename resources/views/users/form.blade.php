@@ -32,7 +32,7 @@
 
     <div class="form-group">
         {{ Form::label('role', 'User Role:') }}
-        {{ Form::select('role', ['S' => 'Student', 'T' => 'Teacher', 'A'=> 'Admin'],($user->role)?($user->role):'S',['class' => 'form-control']) }}
+        {{ Form::select('role', ['S' => 'Student', 'T' => 'Teacher', 'A'=> 'Admin'],isset($user->role)?($user->role):'S',['class' => 'form-control']) }}
     </div>
 
     <div class="form-group">

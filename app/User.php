@@ -105,4 +105,9 @@ class User extends Authenticatable
     {
         $this->hasMany(MyResource::class);
     }
+
+    public function announcements()
+    {
+        $this->hasMany(Announcement::class);
+    }
 }

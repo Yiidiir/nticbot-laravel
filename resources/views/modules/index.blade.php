@@ -43,7 +43,7 @@
 
                     <th>Degree</th>
 
-                    <th>Action</th>
+                    <th width="150px">Action</th>
 
                 </tr>
 

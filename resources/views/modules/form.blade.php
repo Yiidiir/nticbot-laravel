@@ -5,7 +5,7 @@
 
         {{ Form::label('name', 'Name ') }}
 
-        {!! Form::text('name', null, array('placeholder' => 'name','class' => 'form-control')) !!}
+        {!! Form::text('name', null, array('placeholder' => 'Analyse 1','class' => 'form-control')) !!}
 
         @if ($errors->has('name'))
             <div class="help-block">{{ $errors->first('name') }}</div>
@@ -17,7 +17,7 @@
 
         {{ Form::label('code', 'Code') }}
 
-        {!! Form::text('code', null, array('placeholder' => 'code','class' => 'form-control')) !!}
+        {!! Form::text('code', null, array('placeholder' => 'ANA','class' => 'form-control')) !!}
 
         @if ($errors->has('code'))
             <div class="help-block">{{ $errors->first('code') }}</div>
@@ -31,9 +31,9 @@
 
     <div class="form-group">
 
-        {{ Form::label('description', 'Description:') }}
+        {{ Form::label('description', 'Description') }}
 
-        {!! Form::textarea('description', null, array('placeholder' => 'Body','class' => 'form-control','style'=>'height:150px')) !!}
+        {!! Form::textarea('description', null, array('placeholder' => 'Module d\'analyse 1','class' => 'form-control','style'=>'height:150px')) !!}
 
     </div>
     <div class="form-group">
