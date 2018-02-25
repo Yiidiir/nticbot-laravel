@@ -122,16 +122,19 @@ class ResourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (MyResource::find($id)->user->id == $request->user()->id || $request->user()->hasRole('Admin')) {
+        $resource = MyResource::find($id);
+        if ($resource != null) {
+            if ($resource->user->id == $request->user()->id || $request->user()->hasRole('Admin')) {
+                $request->merge(['module_id' => $request->get('module_id')]);
+                $request->validate(['title' => 'required|string', 'description' => 'nullable|string', 'google_drive' => 'nullable|url|max:255', 'publish_year' => 'required|numeric|digits:4|between:2008,' . date('Y'), 'module_id' => 'required|integer|exists:modules,id']);
+                $resource->update($request->all());
 
-            $request->merge(['module_id' => intval($request->get('module_id'))]);
-            $request->validate(['title' => 'required|string', 'description' => 'nullable|string', 'google_drive' => 'nullable|url|max:255', 'publish_year' => 'required|numeric|digits:4|between:2008,' . date('Y'), 'module_id' => 'required|integer|exists:modules,id']);
-            MyResource::find($id)->update($request->all());
-
-            return redirect()->route('resources.index')
-                ->with('success', 'Resource updated successfully');
+                return redirect()->route('resources.index')
+                    ->with('success', 'Resource updated successfully');
+            }
+            return abort(401, 'You\'re not allowed to edit this resource!');
         }
-        return abort(401, 'You\'re not allowed to edit this resource!');
+        return abort('404', 'User not found!');
     }
 
     /**
@@ -143,12 +146,15 @@ class ResourceController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if (MyResource::find($id)->user->id == $request->user()->id || $request->user()->hasRole('Admin')) {
-            MyResource::find($id)->delete();
+        $resource = MyResource::find($id);
+        if ($resource != null) {
+            if ($resource->user->id == $request->user()->id || $request->user()->hasRole('Admin')) {
+                $resource->delete();
 
-            return redirect()->route('resources.index')
-                ->with('success', 'Resource deleted successfully');
+                return redirect()->route('resources.index')
+                    ->with('success', 'Resource deleted successfully!');
+            }
+            return abort('401', 'You\'re not allowed to delete this resource!');
         }
-        return abort('401', 'You\'re not allowed to delete this resource!');
     }
 }
