@@ -80,7 +80,10 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        return view('users.edit', compact('user'));
+        if ($user != null) {
+            return view('users.edit', compact('user'));
+        }
+        return abort('404', 'User Not found!');
 
     }
 
@@ -97,10 +100,11 @@ class UserController extends Controller
         $user = User::find($id);
 
         if ($user != null) {
-            $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, 'password' => 'required|string|min:6']);
+            $request->validate(['name' => 'required|string|max:255', 'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, 'password' => 'required|string|min:6', 'role' => 'required|in:S,T,A']);
             if ($request->get('password') != $user->password) {
                 $request->merge(['password' => bcrypt($request->get('password'))]);
             }
+//            exit($request->get('role'));
             $user->update($request->all());
             return redirect()->route('users.index')
                 ->with('success', 'User updated successfully');

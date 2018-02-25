@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     /**
@@ -28,9 +28,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class);
+        $role = 0;
+        switch ($this->role) {
+            case 'S':
+                $role = 'Student';
+                break;
+            case 'T':
+                $role = 'Teacher';
+                break;
+            case 'A':
+                $role = 'Admin';
+                break;
+        }
+        return $role;
     }
 
 
@@ -44,15 +56,13 @@ class User extends Authenticatable
 
         if (is_array($roles)) {
 
-            return $this->hasAnyRole($roles) ||
-                abort(401, 'This action is unauthorized.');
+            return $this->hasAnyRole($roles) || abort(401, 'This action is unauthorized.');
 
         }
-
-        return $this->hasRole($roles) ||
-            abort(401, 'This action is unauthorized.');
+        return $this->hasRole($roles) || abort(401, 'This action is unauthorized.');
 
     }
+
 
     /**
      * Check multiple roles
@@ -63,8 +73,13 @@ class User extends Authenticatable
     public function hasAnyRole($roles)
 
     {
+        foreach ($roles as $role) {
+            if ($this->hasRole($role)) {
+                return true;
+            }
+        }
 
-        return null !== $this->roles()->whereIn('name', $roles)->first();
+        return false;
 
     }
 
@@ -78,7 +93,7 @@ class User extends Authenticatable
 
     {
 
-        return null !== $this->roles()->where('name', $role)->first();
+        return $role == $this->role();
 
     }
 

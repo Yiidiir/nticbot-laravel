@@ -59,7 +59,7 @@
 
                         <td>{{ $user->email}}</td>
 
-                        <td>ROLE</td>
+                        <td>{{ $user->role() }}</td>
 
                         <td>
 
