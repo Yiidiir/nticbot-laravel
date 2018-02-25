@@ -21,5 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('resources', 'ResourceController');
 Route::resource('modules', 'ModuleController');
+Route::resource('users', 'UserController');
 
 Route::get('/logout', 'Auth\LoginController@logout');
