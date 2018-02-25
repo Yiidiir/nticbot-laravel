@@ -9,7 +9,7 @@
         <div class="row">
             <div class="pull-left">
 
-                <h2>Resource List</h2>
+                <h2>Users List</h2>
 
             </div>
 
@@ -45,7 +45,7 @@
 
                     <th>Grade</th>
 
-                    <th width="280px">Action</th>
+                    <th width="150px">Action</th>
 
                 </tr>
 
