@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return abort(404);
+        return redirect()->route('users.index');
     }
 
     /**
