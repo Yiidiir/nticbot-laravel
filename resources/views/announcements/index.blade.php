@@ -79,6 +79,9 @@
                 @endforeach
 
             </table>
+            @if(count($announcements)<1)
+                <h4 class="text-center">No Announcements Found!</h4>
+            @endif
         </div>
 
         {!! $announcements->links() !!}

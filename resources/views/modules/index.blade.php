@@ -76,6 +76,9 @@
                 @endforeach
 
             </table>
+            @if(count($modules)<1)
+                <h4 class="text-center">No Modules Found!</h4>
+            @endif
         </div>
 
         {!! $modules->links() !!}

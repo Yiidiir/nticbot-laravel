@@ -75,7 +75,11 @@
 
                 @endforeach
 
+
             </table>
+            @if(count($resources)<1)
+                <h4 class="text-center">You did not add any resources!</h4>
+            @endif
         </div>
 
         {!! $resources->links() !!}
