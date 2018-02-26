@@ -37,12 +37,20 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    &nbsp;
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
+                    @if(Auth::user()!==null)
+                        @if(Auth::user()->hasAnyRole(['Admin','Teacher']))
+                            <li><a href="{{ route('resources.index') }}">Manage Resources</a></li>
+                        @endif
+                        @if(Auth::user()->hasAnyRole(['Admin']))
+                            <li><a href="{{ route('modules.index') }}">Manage Modules</a></li>
+                            <li><a href="{{ route('users.index') }}">Manage Users</a></li>
+                            <li><a href="{{ route('announcements.index') }}">Manage Announcements</a></li>
+                        @endif
+                    @endif
                     @guest
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
