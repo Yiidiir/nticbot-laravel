@@ -23,7 +23,11 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Admin','Teacher']);
-        return view('home');
+        $request->user()->authorizeRoles(['Admin', 'Teacher']);
+        if ($request->user()->hasAnyRole(['Admin'])) {
+            return redirect()->route('announcements.index')->with('success', 'Welcome Back, Mr. ' . $request->user()->name);
+        } elseif ($request->user()->hasAnyRole(['Teacher'])) {
+            return redirect()->route('resources.index')->with('success', 'Welcome Back, Mr. ' . $request->user()->name);
+        }
     }
 }

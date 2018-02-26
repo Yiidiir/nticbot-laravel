@@ -25,3 +25,6 @@ Route::resource('users', 'UserController');
 Route::resource('announcements', 'AnnouncementController');
 
 Route::get('/logout', 'Auth\LoginController@logout');
+
+// Disabled Registration without changing Auth:routes()
+Route::match(['get', 'post'], 'register', 'Auth\LoginController@login')->name('register');
