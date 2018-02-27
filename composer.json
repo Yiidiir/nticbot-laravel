@@ -12,14 +12,16 @@
     "fideloper/proxy": "~3.3",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
-    "laravelcollective/html": "^5.4.0"
+    "laravelcollective/html": "^5.4.0",
+    "pimax/fb-messenger-php": "dev-master"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~6.0",
-    "laravelcollective/html": "^5.4.0"
+    "laravelcollective/html": "^5.4.0",
+    "pimax/fb-messenger-php": "dev-master"
   },
   "autoload": {
     "classmap": [
