@@ -13,7 +13,7 @@ class Module extends Model
 
     public function resources()
     {
-        $this->hasMany(Resource::class);
+        return $this->hasMany(Resource::class);
     }
 
     public static function getFormModulesArray()
