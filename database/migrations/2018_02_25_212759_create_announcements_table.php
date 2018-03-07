@@ -16,7 +16,7 @@ class CreateAnnouncementsTable extends Migration
         Schema::create('announcements', function (Blueprint $table) {
             $table->increments('id');
             $table->text('body');
-            $table->dateTime('planned_time')->default('CURRENT_TIMESTAMP');;
+            $table->dateTime('planned_time')->useCurrent();
             $table->integer('user_id')->default(2);
             $table->timestamps();
         });
