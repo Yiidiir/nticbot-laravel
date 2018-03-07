@@ -14,9 +14,9 @@
             </div>
 
             <div class="pull-right">
-
-                <a class="btn btn-primary" href="{{ route('resources.index') }}"> Back</a>
-
+                @if(Auth::user()!==null)
+                    <a class="btn btn-primary" href="{{ route('resources.index') }}"> Back</a>
+                @endif
             </div>
 
         </div>
