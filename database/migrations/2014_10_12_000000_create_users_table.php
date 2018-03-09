@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('messenger_uid')->unique()->nullable();
+            $table->boolean('sub_announcements')->default(TRUE);
             $table->enum('role', ['S', 'T', 'A']);
             $table->rememberToken();
             $table->timestamps();
