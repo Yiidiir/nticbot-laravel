@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Observers\AnnouncementObserver;
 use Illuminate\Database\Eloquent\Model;
 
 class Announcement extends Model
@@ -15,5 +16,11 @@ class Announcement extends Model
     public function user()
     {
         $this->belongsTo(User::class);
+    }
+
+    public static function boot() {
+        parent::boot();
+
+        Announcement::observe(new AnnouncementObserver());
     }
 }
