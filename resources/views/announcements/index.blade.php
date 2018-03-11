@@ -70,7 +70,8 @@
 
                                 {!! Form::close() !!}
                             @else
-                                <h5>Already broadcasted!</h5>
+
+                                Already broadcasted!
                             @endif
                         </td>
 
