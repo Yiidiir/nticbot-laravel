@@ -13,7 +13,8 @@
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "^5.4.0",
-    "pimax/fb-messenger-php": "dev-master"
+    "pimax/fb-messenger-php": "dev-master",
+    "google/apiclient": "^2.0"
   },
   "require-dev": {
     "filp/whoops": "~2.0",
@@ -21,7 +22,8 @@
     "mockery/mockery": "~1.0",
     "phpunit/phpunit": "~6.0",
     "laravelcollective/html": "^5.4.0",
-    "pimax/fb-messenger-php": "dev-master"
+    "pimax/fb-messenger-php": "dev-master",
+    "google/apiclient": "^2.0"
   },
   "autoload": {
     "classmap": [
