@@ -16,15 +16,9 @@ use pimax\Messages\Message;
 use pimax\Messages\MessageButton;
 use pimax\Messages\StructuredMessage;
 use pimax\Messages\MessageElement;
-use pimax\Messages\MessageReceiptElement;
-use pimax\Messages\Address;
-use pimax\Messages\Summary;
-use pimax\Messages\Adjustment;
-use pimax\Messages\AccountLink;
 use pimax\Messages\ImageMessage;
 use pimax\Messages\QuickReply;
 use pimax\Messages\QuickReplyButton;
-use pimax\Messages\SenderAction;
 use App\User;
 
 class MessengerController extends Controller
@@ -328,6 +322,10 @@ class MessengerController extends Controller
      * Fix Index resources & announcements layout
      * add pagination for users by type
      * setup drive api
+     * use pusher for announcements
+     * setup cron for delayed announcements
+     * use Listeners for Notifs (Messenger)
+     * Make Messenger as a Service
      * */
 
     /**
