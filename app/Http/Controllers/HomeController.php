@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Announcement;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     /**
@@ -23,11 +24,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['Admin', 'Teacher']);
-        if ($request->user()->hasAnyRole(['Admin'])) {
-            return redirect()->route('announcements.index')->with('success', 'Welcome Back, Mr. ' . $request->user()->name);
-        } elseif ($request->user()->hasAnyRole(['Teacher'])) {
-            return redirect()->route('resources.index')->with('success', 'Welcome Back, Mr. ' . $request->user()->name);
+
+        if ($request->user() !== null) {
+            if ($request->user()->hasAnyRole(['Admin'])) {
+                return redirect()->route('announcements.index')->with('success', 'Welcome Back, Mr. ' . $request->user()->name);
+            } elseif ($request->user()->hasAnyRole(['Teacher'])) {
+                return redirect()->route('resources.index')->with('success', 'Welcome Back, Mr. ' . $request->user()->name);
+            }
+        } else {
+            $params = ['degree' => $request->route('degree'), 'semester' => $request->route('semester'), 'module'=>$request->route('module')];
+            $latest_announcement = Announcement::all()->where('planned_time', '<=', Carbon::now()->toDateTimeString())->last();
+            return view('home', compact('params','latest_announcement'));
         }
     }
 }
