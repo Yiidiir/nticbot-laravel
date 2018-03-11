@@ -55,7 +55,7 @@
 
                         <td>{{ $announcement->body}}</td>
 
-                        <th>{{ date_format(date_create($announcement->planned_time),'d/m/Y \a\t H\hi') }}</th>
+                        <th>{{ date_format(date_create($announcement->planned_time),'m/d/Y \a\t H\hi') }}</th>
 
                         <td>
 
