@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Event;
+
 use App\Announcement;
 use App\Module;
 use App\Resource;
@@ -320,6 +322,13 @@ class MessengerController extends Controller
 
         }
     }
+
+    /*
+     * TODO:
+     * Fix Index resources & announcements layout
+     * add pagination for users by type
+     * setup drive api
+     * */
 
     /**
      * Show the form for creating a new resource.
