@@ -319,8 +319,8 @@ class MessengerController extends Controller
 
     /*
      * TODO:
-     * Fix Index resources & announcements layout
-     * add pagination for users by type
+     * #Fix Index resources & announcements layout
+     * #add pagination for users by type
      * setup drive api
      * use pusher for announcements
      * setup cron for delayed announcements
