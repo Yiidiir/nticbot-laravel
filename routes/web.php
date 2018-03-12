@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/{degree?}/{semester?}/{module?}', 'HomeController@index')->where(['degree' => '(L|M|D)', 'semester' => '[0-6]', 'module' => '(.)+'])->name('home');
 Route::resource('resources', 'ResourceController');
 Route::resource('modules', 'ModuleController');
+Route::get('users/{grade?}', 'UserController@index')->where(['grade' => '(students|teachers|admins)']);
 Route::resource('users', 'UserController');
 Route::resource('announcements', 'AnnouncementController');
 Route::get('/logout', 'Auth\LoginController@logout');

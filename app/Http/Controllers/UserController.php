@@ -27,7 +27,15 @@ class UserController extends Controller
     public function index(Request $request)
     {
         //
-        $users = User::latest()->paginate(5);
+
+
+        if ($request->route('grade') !== null) {
+            $grades = ['students' => 'S', 'teachers' => 'T', 'admins' => 'A'];
+            $grade = $grades[$request->route('grade')];
+            $users = User::where('role', $grade)->latest()->paginate(5);
+        } else {
+            $users = User::latest()->paginate(5);
+        }
 
 
         return view('users.index', compact('users'))

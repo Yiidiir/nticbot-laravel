@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title','Manage Users')
 
 @section('content')
 
@@ -32,7 +32,27 @@
         @endif
 
         <div class="row">
-
+            @section('setValues')
+                {{ $grade = 0 ? '':'' }}
+                @if (Request::path() == 'users')
+                    {{ $grade = 0 ? 'active':'' }}
+                @elseif(Request::path() == 'users/teachers')
+                    {{ $grade = 1 }}
+                @elseif(Request::path() == 'users/students')
+                    {{ $grade = 2 }}
+                @elseif(Request::path() == 'users/admins')
+                    {{ $grade = 3 }}
+                @endif
+            @endsection
+            <div class="form-group">
+                <a class="btn btn btn-default {{$grade == 0 ? 'active':''}}" href="{{ route('users.index') }}/"> All</a>
+                <a class="btn btn btn-default {{$grade == 1 ? 'active':''}}" href="{{ route('users.index') }}/teachers">
+                    Teachers</a>
+                <a class="btn btn btn-default {{$grade == 2 ? 'active':''}}" href="{{ route('users.index') }}/students">
+                    Students</a>
+                <a class="btn btn btn-default {{$grade == 3 ? 'active':''}}" href="{{ route('users.index') }}/admins">
+                    Admins</a>
+            </div>
             <table class="table table-stripped">
 
                 <tr>
