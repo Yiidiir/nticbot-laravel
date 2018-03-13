@@ -21,6 +21,7 @@ Route::get('users/{grade?}', 'UserController@index')->where(['grade' => '(studen
 Route::resource('users', 'UserController');
 Route::resource('announcements', 'AnnouncementController');
 Route::get('/logout', 'Auth\LoginController@logout');
+//Route::resource('gdrive', 'gdrive');
 
 // Disabled Registration without changing Auth:routes()
 Route::match(['get', 'post'], 'register', 'Auth\LoginController@login')->name('register');
