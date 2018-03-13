@@ -106,17 +106,6 @@ class MessengerController extends Controller
 
                         switch ($command) {
 
-                            // When bot receive "text"
-                            case 'text':
-                                $bot->send(new Message($message['sender']['id'], 'This is a simple text message.'));
-                                break;
-
-                            // When bot receive "image"
-                            case 'image':
-                                $bot->send(new ImageMessage($message['sender']['id'], 'https://developers.facebook.com/images/devsite/fb4d_logo-2x.png'));
-                                break;
-
-
                             case 'SHOW_RESOURCES_MAIN':
                                 choose_degree:
                                 $bot->send(new QuickReply($message['sender']['id'], 'Choose your degree ;D', []));
@@ -131,22 +120,6 @@ class MessengerController extends Controller
                                 $bot->send(new ImageMessage($message['sender']['id'], dirname(__FILE__) . '/fb4d_logo-2x.png'));
                                 break;
 
-
-                            // When bot receive "button"
-                            case 'button':
-                                $arr = [];
-                                foreach ($devices as $resource) {
-                                    $arr[] = new MessageButton(MessageButton::TYPE_POSTBACK, 'First button');
-                                }
-
-                                $bot->send(new StructuredMessage($message['sender']['id'],
-                                    StructuredMessage::TYPE_BUTTON,
-                                    [
-                                        'text' => 'Choose category',
-                                        'buttons' => $arr
-                                    ]
-                                ));
-                                break;
 
                             case (preg_match_all('/\[\[D(L|M|D)\]\]/', $command, $matches, PREG_SET_ORDER, 0) ? TRUE : FALSE):
 
@@ -250,7 +223,7 @@ class MessengerController extends Controller
                                     $elems = [];
                                     foreach ($resources as $resource) {
                                         $elems[] = new MessageElement($resource->title . ' (' . $resource->publish_year . ' - ' . ($resource->publish_year + 1) . ')', $resource->description, 'http://icons.iconarchive.com/icons/zhoolego/material/512/Filetype-Docs-icon.png', [
-                                            new MessageButton(MessageButton::TYPE_POSTBACK, 'Download', 'COMMANDS-' . $resource->module_id),
+                                            new MessageButton(MessageButton::TYPE_WEB, 'Download', $resource->google_drive),
                                             new MessageButton(MessageButton::TYPE_WEB, 'View', route('resources.show', $resource->id)),
                                         ]);
                                     }
@@ -264,18 +237,6 @@ class MessengerController extends Controller
                                     $bot->send(new Message($message['sender']['id'], 'No resources found, sorry :('));
                                     goto choose_degree;
                                 }
-                                break;
-
-
-                            case 'set menu':
-                                $bot->deletePersistentMenu();
-                                $bot->setPersistentMenu([
-                                    new LocalizedMenu('default', false, [
-                                        new MenuItem(MenuItem::TYPE_POSTBACK, 'Read Latest Announcements', 'ASK_ANNOUNCEMENTS'),
-                                        new MenuItem(MenuItem::TYPE_POSTBACK, 'Browse Resources', 'SHOW_RESOURCES_MAIN'),
-                                        new MenuItem(MenuItem::TYPE_POSTBACK, 'Toggle Notifications', 'TOGGLE_SUB')
-                                    ])
-                                ]);
                                 break;
 
 
