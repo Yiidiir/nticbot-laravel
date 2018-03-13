@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Broadcast New Announcement')
 
 
 @section('content')
