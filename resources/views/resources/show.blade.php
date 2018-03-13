@@ -41,7 +41,7 @@
                 <div class="div-group">
 
 
-                    <a type="button" href="{{$resource->google_drive}}" class="btn btn-primary btn-lg"
+                    <a type="button" href="{{$resource->google_drive}}" target="_blank" class="btn btn-primary btn-lg"
                        aria-label="Left Align">
                         <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download Resource
                     </a>
