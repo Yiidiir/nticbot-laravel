@@ -1,6 +1,4 @@
-
-#NTICBot
-
+# NTICBot
 NTICBot is a simple Messenger Bot Server with a backend CRUD Interface that allows students to access resources (courses,TPs etc...) within messenger or via a web interface and uses [Google Drive API](https://developers.google.com/drive/) to fetch files.
 
 
@@ -15,7 +13,7 @@ git clone https://github.com/Yiidiir/nticbot-laravel.git && cd nticbot-laravel
 php artisan migrate:fresh --seed
 ```
 ## TODO
-Things needed to improve (please send a PL if you did :) 
+Things needed to improve (please send a PR if you did :) 
 
 - Setup Google Drive API
 - Use pusher for announcements (Messenger)
@@ -32,4 +30,4 @@ Contributions are Welcome from everyone, just open a pull request!
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+This code is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
