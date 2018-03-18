@@ -8,7 +8,11 @@ NTICBot is a simple Messenger Bot Server with a backend CRUD Interface that allo
 git clone https://github.com/Yiidiir/nticbot-laravel.git && cd nticbot-laravel
 ```
 2. Update ``.env`` file with your details.
-3. Run artisan 
+3. Run Composer
+```
+php composer.phar install
+```
+4. Run artisan 
 ```
 php artisan migrate:fresh --seed
 ```
