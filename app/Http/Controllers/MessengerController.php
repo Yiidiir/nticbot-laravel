@@ -123,6 +123,9 @@ class MessengerController extends Controller
 
                             case (preg_match_all('/\[\[D(L|M|D)\]\]/', $command, $matches, PREG_SET_ORDER, 0) ? TRUE : FALSE):
 
+                                if (!isset($matches[0][1]) || empty($matches[0][1])) {
+                                    exit;
+                                }
                                 switch ($matches[0][1]) {
                                     case 'L':
                                         modules_sem_l:
@@ -251,8 +254,8 @@ class MessengerController extends Controller
                                 break;
 
                             case 'ASK_ANNOUNCEMENTS':
-                                $announcements = Announcement::where('planned_time','<=',Carbon::now()->toDateTimeString())->latest()->take(5)->get();
-                                if(!$announcements->isEmpty()) {
+                                $announcements = Announcement::where('planned_time', '<=', Carbon::now()->toDateTimeString())->latest()->take(5)->get();
+                                if (!$announcements->isEmpty()) {
                                     foreach ($announcements as $announcement) {
                                         $bot->send(new Message($message['sender']['id'], $announcement->body . ''));
                                     }

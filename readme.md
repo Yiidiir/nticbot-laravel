@@ -1,6 +1,8 @@
 # NTICBot
 NTICBot is a simple Messenger Bot Server with a backend CRUD Interface that allows students to access resources (courses,TPs etc...) within messenger or via a web interface and uses [Google Drive API](https://developers.google.com/drive/) to fetch files.
-
+![Screenshot](./md-img/1.png)
+![Screenshot](./md-img/2.png)
+![Screenshot](./md-img/3.png)
 
 ## Install
 1.  Clone this repository
